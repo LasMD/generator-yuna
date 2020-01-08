@@ -1,0 +1,22 @@
+
+# DO NOT REMOVE THIS LINE AND THE LINES BELOW SSL_REDIRECT:ssstravels.lk
+Options All -FollowSymLinks -Indexes
+<FilesMatch "\.(tex|log|aux)$">
+   Header set Content-Type text/plain
+</FilesMatch>
+
+RewriteEngine on
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} ^<%=site.url%>$
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+# DO NOT REMOVE THIS LINE AND THE LINES ABOVE SSL_REDIRECT:ssstravels.lk
+
+
+# for top root level destinations and pages
+RewriteCond %{REQUEST_URI} !\.(html?|php|css|png|jpg|jpeg|js|ico|ttf|woff|eot|svg|woff2)$ [NC]
+RewriteRule \/?([^-]+[a-z])$ https://%{HTTP_HOST}/$1.html [L]
+
+# common redirect for files
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index [L]

@@ -1,0 +1,3 @@
+#exclude generator specific folders
+generators/app/**
+_depricated/**

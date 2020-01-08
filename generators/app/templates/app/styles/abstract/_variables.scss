@@ -1,0 +1,23 @@
+@charset 'utf-8';
+
+$prime-color: #f51167;
+$sub-color: #E08451;
+$aux-color: #D17EF9;
+
+$breakpoints: (
+	"xx-small": 320px,
+  "x-small": 568px,
+  "small": 768px,
+  "medium": 992px,
+  "large": 1200px,
+	"x-large": 1368px
+	);
+
+$font-matrice: (
+	"xx-small": (min: "1em", max: "1.5em"),
+  "x-small": (),
+  "small": (),
+  "medium": (),
+  "large": (),
+	"x-large": ()
+	);

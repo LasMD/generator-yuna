@@ -1,0 +1,14 @@
+#all the temperary code files of the application
+.tmp/
+
+#exclude abstracted bower and npm files
+app/scripts/lib/*.js
+
+#exclude build folder files
+build/
+
+#exclude all tool related files 
+Gulpfile.js
+gulp.conf.js
+babel.config.js
+rollup.config.js

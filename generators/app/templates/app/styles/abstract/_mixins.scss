@@ -1,0 +1,32 @@
+@mixin add_prime_gradient($prime, $secondary, $angle: 40deg) {
+  background-image: linear-gradient($angle, $secondary, $prime);
+}
+
+///@public
+///@param {string} $max_screen - maximum screen brakpoint
+///@param {string} $min_screen - miniumm screen breakpoint
+///@param {String} fmax	- maximum probable font size
+///@param {String} fmin	- minimum probable font size
+///@returns {String} with units 20px, 2em etc
+@mixin font_size($max_break, $min_break, $fmax, $fmin: null) {
+  $max_screen: map-get($breakpoints, $max_break);
+  $min_screen: map-get($breakpoints, $min_break);
+  $max_font: 0;
+  $min_font: 0;
+  $funit: unit($fmax); //this is needed to get the final unit type for the interpolated number
+
+  @if(not $fmin) {
+    //single value given
+    $max_font: strip-unit($fmax) * 1.1;
+    $min_font: strip-unit($fmax) * 0.9;
+  }
+
+  @else {
+    $max_font: strip-unit($fmax);
+    $min_font: strip-unit($fmin);
+  }
+
+	$font_interpolation: calc(#{$min_font}#{$funit} + #{$max_font - $min_font} * ((100vw - #{$min_screen}) / #{strip-unit($max_screen) - strip-unit($min_screen)}));
+
+	font-size: $font_interpolation;
+}

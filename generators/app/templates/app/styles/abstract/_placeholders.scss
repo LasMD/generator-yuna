@@ -1,0 +1,34 @@
+%display_flex {
+	display: flex;
+	flex: 1 1 auto;
+	flex-direction: row;
+	flex-wrap: nowrap;
+}
+
+%flex_order_1 {
+	order: 1;
+}
+
+%flex_order_2 {
+	order: 2;
+}
+
+%flex_order_3 {
+	order: 3;
+}
+
+%flex_row {
+	flex-direction: row;
+}
+
+%flex_column {
+	flex-direction: column;
+}
+
+%no_margin {
+	margin: none;
+}
+
+%no_padding {
+	padding: none;
+}

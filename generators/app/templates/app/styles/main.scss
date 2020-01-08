@@ -1,0 +1,50 @@
+// importing custom standalone utility vendor functions
+@import "bower_components/include-media/dist/include-media";
+
+// importing standalone custome functions
+@import "abstract/functions";
+
+// importing abstract resources
+@import "abstract/variables";
+// @import "abstract/helpers";
+@import "abstract/placeholders";
+@import "abstract/mixins";
+
+// importing base resources
+
+// @import "base/reset";
+// @import "base/animations";
+// @import "base/typography";
+
+// importing components
+// @import "component/button";
+// @import "component/hero_slider";
+// @import "component/product_slider";
+
+// importing layouts
+// @import "layout/accordian";
+// @import "layout/nav";
+// @import "layout/banner";
+// @import "layout/feature";
+// @import "layout/footer";
+// @import "layout/header";
+// @import "layout/latest_product";
+// @import "layout/product_filter";
+
+
+// importing pages
+// @import "page/index";
+// @import "page/general";
+// @import "page/cart";
+// @import "page/shop";
+// @import "page/checkout";
+// @import "page/contact";
+// @import "page/product";
+
+// importing vendor specific files
+
+// importing shamed custom styles
+// @import "shame/styles";
+// @import "shame/media";
+
+

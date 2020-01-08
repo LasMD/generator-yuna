@@ -1,0 +1,6 @@
+/*******************************************************
+ * Copyright (C) <%=owener.company%> - All Rights Reserved
+ * Unauthorized embeds or executing the code of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by <%=owener.name%> <%=owener.email%>, <%=date().month%>,<%=date().year%>
+ *******************************************************/

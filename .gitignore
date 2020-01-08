@@ -1,0 +1,11 @@
+#package manager modules
+node_modules/
+bower_components
+
+#dotfiles
+.editorconfig
+
+#metadeta
+package-lock.json
+
+

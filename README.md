@@ -1,14 +1,14 @@
 # Generator-Yuna
 
-<!-- [![build-image](build)]() -->
-<!-- [![code-coverage](codecov)]() -->
+<!-- [![build-image](https://img.shields.io/travis/lasmd/generator-yuna?color=greenred&label=build&logo=travis)]() -->
+<!-- [![code-coverage](https://img.shields.io/coveralls/github/lasmd/generator-yuna)]() -->
 
-![dependancies](dependancies)
-![license](license)
-![version](version)
+![dependancies](https://img.shields.io/david/dev/lasmd/generator-yuna)
+![license](https://img.shields.io/github/license/lasmd/generator-yuna?color=crimson)
+![version](https://img.shields.io/npm/v/generator-yuna?color=blue)
 Universal generator(🌎) for all preliminary and advanced projects (batteries included)
 
-![yuna execution](/images/generator-yuna.gif)
+![yuna execution](./images/generator-yuna.gif)
 
 # Table of contents
 
@@ -23,7 +23,7 @@ Universal generator(🌎) for all preliminary and advanced projects (batteries i
 
 ## Spell It
 
-yu-na -> spell ass **_yo-na_** not **_you-na_**. **_Y_**eoman **_U_**niversal ge**_n_**er**_a_**tor (YUNA). (it is a requirement of yeoman ecosystem to
+yu-na -> spell ass **_yo-na_** not **_you-na_**. **Y**eoman **U**niversal ge**n**er**a**tor (YUNA). (it is a requirement of yeoman ecosystem to
 include _generator_ prefix)
 
 ## Why yuna?
@@ -31,7 +31,7 @@ include _generator_ prefix)
 The first impression get when a person reach _Yuna_ is why another generator ?
 The main idea behind _yuna_ is to make it more simpler and less fuzzie generator at all. If you consider more advanced tools, what can observer is complexity. herewith yuna, brings more simpler and robust scaffolding system.
 
-There are more general webapp scaffolding apps listed on (Yeoman site)[yeoman-generators], you can find on visiting the site.
+There are more general webapp scaffolding apps listed on (Yeoman site) [yeoman-generators], you can find on visiting the site.
 
 Here are features included in _yuna_ script.
 
@@ -87,16 +87,6 @@ making of _Yuna_ inspired by 2 of the most amazing repos available on github
 MIT
 
 © [contact me](linkedin.com/in/lasithadenipitiya)
-
-<!-- links to flags -->
-
-<!-- [build]: https://img.shields.io/travis/lasmd/generator-yuna?color=greenred&label=build&logo=travis -->
-
-<!-- [codecov]: https://img.shields.io/coveralls/github/lasmd/generator-yuna -->
-
-[dependancies]: https://img.shields.io/david/dev/lasmd/generator-yuna
-[license]: https://img.shields.io/github/license/lasmd/generator-yuna?color=crimson
-[version]: https://img.shields.io/npm/v/generator-yuna?color=blue
 
 <!-- liks to references -->
 

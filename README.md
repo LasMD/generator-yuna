@@ -4,8 +4,9 @@
 <!-- [![code-coverage](https://img.shields.io/coveralls/github/lasmd/generator-yuna)]() -->
 
 ![dependancies](https://img.shields.io/david/dev/lasmd/generator-yuna)
-![license](https://img.shields.io/github/license/lasmd/generator-yuna?color=crimson)
-![version](https://img.shields.io/npm/v/generator-yuna?color=blue)
+![license](https://img.shields.io/github/license/lasmd/generator-yuna?color=green)
+![npm version](https://img.shields.io/npm/v/generator-yuna?color=blue)
+
 Universal generator(🌎) for all preliminary and advanced projects (batteries included)
 
 ![yuna execution](./images/generator-yuna.gif)

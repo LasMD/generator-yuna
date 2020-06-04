@@ -1,42 +1,30 @@
+let camelCase = require('lodash.camelcase');
+var strip = require("strip-ansi");
+
 /**
- * Method for parsing npm package names stripping out
- * @, /, - signs from the given string
- * and returns
+ * characters like [@'"/-] will be stripped and
+ * the first charactor of the second word
+ * delimetered by abover characters
+ * will be capitalized
+ * 
+ * @param {name of the package to be beautified} name 
+ * @returns string
  */
-
-let upper = require('lodash.upperfirst');
-let stripname = function (xname) {
-  const regex = /^[@]?([a-zA-Z]+)[\/-]/;
-  let m;
-  if ((m = regex.exec(xname)) !== null) {
-    return m[1];
-  } else {
-    return xname;
-  }
-};
-
-let replace = function (xname) {
-  var name = "";
-  var fracts = xname.replace("@", "").split(/\//);
-  var package = fracts[0];
-  var core = fracts[1];
-  name = name.concat(package);
-
-  if (fracts.length > 1) {
-    name = name.concat(upper(core));
-  }
-  return name;
-}
+let beautify = name => camelCase(name);
 
 /**
  * This method is made in awear of 
  * tagged template literals
  * strings
  */
-let createpath = function (xpath, package) {
-  return xpath[0].concat(package);
-}
+let createpath = (xpath, package) => xpath[0].concat(package)
 
-module.exports.stripname = stripname;
-module.exports.replace = replace;
+/**
+ * strip out ansi-colors
+ * from the input text
+ */
+let ansiStrip = input => strip(input);
+
+module.exports.beautify = beautify;
+module.exports.ansiStrip = ansiStrip;
 module.exports.createpath = createpath;

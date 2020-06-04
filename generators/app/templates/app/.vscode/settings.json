@@ -1,2 +1,32 @@
 {
+    "workbench.colorCustomizations": {
+        "activityBar.activeBorder": "#FFFF"
+    },
+    "spellright.language": [
+        "English(USA)"
+    ],
+    "spellright.documentTypes": [
+        "markdown",
+        "latex",
+        "plaintext"
+    ],
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 2000,
+    "html.format.enable": true,
+    "html.autoClosingTags": true,
+    "editor.autoIndent": "full",
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    "editor.tabSize": 2,
+    "editor.fontLigatures": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true,
+        "source.organizeImports": true
+    },
+    "eslint.enable": true,
+    // "eslint.autoFixOnSave": true, //old configurations for ESLint
+    "eslint.run": "onSave",
+    "eslint.workingDirectories": [
+        "/"
+    ],
 }

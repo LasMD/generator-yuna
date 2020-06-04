@@ -5,20 +5,13 @@ var uglify = require('rollup-plugin-uglify');
 var babel = require('rollup-plugin-babel');
 var hash = require('rollup-plugin-hash');
 
-var path = require('path');
-
 var babel_config = require('./babel.config');
 let development = function () {
 
-  let input = {
-		external: ["jquery"]
-  }
+  let input = {}
 
   let output = {
-    format: "umd",
-    globals: {
-			"jquery": "$"
-    }
+    format: "umd"
   }
 
   return {
@@ -27,44 +20,11 @@ let development = function () {
   }
 }
 
-let libraries = function () {
-	let input = {}
-
-	// some libraries depends on other libraries
-	// should declare them as external even
-	// to the current build
-	let external = ["@google/maps"];
-	let globals = {
-		"@google/maps": "google"
-	};
-
-  let output = {
-    format: "umd"
-	}
-	
-	let paths = {
-		"google":"https://www.google.com"
-	}
-
-  return {
-    input,
-		output,
-		external,
-		globals,
-		paths,
-    plugins: [
-      common(),
-      resolve({
-        main: true,
-        browser: true,
-        jsnext: true,
-        module: true
-      }),
-    ]
-  }
-}
-
-let production = function (minify) {
+// minify will be happen as the last step of the bundling process.
+// before shipped out to production environment, there are
+// certain checks needs to be done hence a minify check
+// is necessary
+let production = function (remote) {
   let input = {}
   let output = {
     format: "iife",
@@ -91,11 +51,11 @@ let production = function (minify) {
         exclude: [/core-js/, /runtime/]
       }),
       fsize(),
-      (minify) ? uglify() : "",
-      hash({
+      (remote) ? uglify() : "", 
+      (remote) ? hash({
         replace: true,
         dest: "main.[hash:10].js"
-      })
+      }): ""
     ]
   }
 }

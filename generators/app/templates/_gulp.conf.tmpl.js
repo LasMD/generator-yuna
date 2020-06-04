@@ -12,7 +12,7 @@ let flexbugs = require("postcss-flexbugs-fixes");
 let cssutils = require("postcss-utilities");
 
 //utilities
-browsers = ['last 5 versions', '> 5%'];
+let browsers = ['last 5 versions', '> 5%'];
 module.exports = {
   dev,
   temp,
@@ -56,23 +56,6 @@ module.exports = {
       dev: `${dev}${assets}images/logo.svg`,
       build: build
     },
-    retina: {
-      inputFlags: {
-        1: "@1x",
-        2: "@2x",
-        4: "@4x"
-      },
-      outputFlags: {
-        1: "@1x",
-        2: "@2x",
-        4: "@4x"
-      },
-      scaleUp: false
-		},
-		thumbs: {
-			source: `${dev}${assets}/images/product`,
-			dest: `${build}/images/product`
-		},
     source: `${dev}${assets}/images`,
     build: `${build}/images`
   },
@@ -117,11 +100,4 @@ module.exports = {
       }
     }
 	},
-	seo: {
-		sitemap: {
-			siteUrl: "http://<%=project.site%>",
-			changefreq: 'daily',
-			priority: 0.7 
-		}
-	}
 };

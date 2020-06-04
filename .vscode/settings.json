@@ -1,0 +1,20 @@
+{
+  "debug.openDebug": "neverOpen",
+  "editor.fontFamily": "JetBrains Mono, Consolas, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 2000,
+  "editor.detectIndentation": false,
+  "editor.insertSpaces": true,
+  "[javascript]": {
+    "editor.tabSize": 2
+  },
+  "[json]": {
+    "editor.tabSize": 2,
+    "editor.quickSuggestions": {
+      "comments": true,
+      "strings": true
+    },
+    "editor.suggest.insertMode": "insert"
+  }
+}

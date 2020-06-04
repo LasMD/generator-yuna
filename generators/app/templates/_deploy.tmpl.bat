@@ -6,7 +6,7 @@ goto :main
     setlocal
     set _app=<%=project.name%>
     set _base=<%=deploy.base%>
-    set _destination=!_base!/<%=deploy.path%>
+    set _destination=!_base!\<%=deploy.path%>
     set _source=%~dp0build
     set /A _flag=0
 
@@ -19,7 +19,7 @@ goto :main
 
     if !_flag! equ 0 (
         call :setbase "D:" %~dp0 "for VSCode"
-        code .
+        rem code .
         call :create !_base!, !_app!
     )
 
@@ -29,7 +29,7 @@ goto :main
 
 rem @param %1 => driver path
 rem @param %2 => file path
-rem @return %3 =>boolean for root existance 
+rem @return %3 => boolean for root existance 
 :check 
     echo ::::: checking for local web server destination :::::
     call :setbase "C:" "%~1" "for local web server root"

@@ -12,7 +12,6 @@ module.exports = {
     ["@babel/plugin-transform-runtime", {
       "helpers": true,
       "regenerator": true
-    }],
-    "@babel/plugin-transform-classes"
+    }]
   ]
 }

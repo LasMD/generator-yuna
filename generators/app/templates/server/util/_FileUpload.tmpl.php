@@ -1,5 +1,5 @@
 <?php
-
+namespace Util;
 class FileUpload
 {
     private $uploadlink;
@@ -19,7 +19,7 @@ class FileUpload
     {
         if (isset($_FILES[$field_name])) {
             $file = $_FILES[$field_name]['name'];
-            $new_file_name = hash_hmac("sha256", "{$file}", "G89^fsYab5");
+            $new_file_name = hash_hmac("sha256", "{$file}", "<%=file.salt%>");
             $extension = $this->extractExtension($file);
             $temporary = $_FILES[$field_name]['tmp_name'];
             $error = $_FILES[$field_name]['error'];

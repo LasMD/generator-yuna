@@ -1,6 +1,6 @@
 #package manager modules
 node_modules/
-bower_components
+bower_components/
 
 #dotfiles
 .editorconfig
@@ -8,4 +8,12 @@ bower_components
 #metadeta
 package-lock.json
 
+#testing workspace
+test-workspace/
 
+#code coverage 
+.nyc_output
+coverage
+
+#depricated
+_depricated

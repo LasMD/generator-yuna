@@ -12,30 +12,23 @@
         "es6": true
     },
     "rules": {
-				"no-empty": 1,
-        "no-extra-parens": [1, "functions"],
+        "no-empty": 1,
+        "no-extra-parens": [1,"functions"],
         "no-prototype-builtins": 1,
         "no-implicit-globals": 1,
         "no-invalid-this": 2,
-        "eqeqeq": [1, "always"],
+        "eqeqeq": [1,"always"],
         "no-unused-vars": 1,
-        "rest-spread-spacing": ["error", "never"],
+        "rest-spread-spacing": ["error","never"],
         "no-console": "warn",
         "no-alert": "warn",
-
         "no-regex-spaces": "error",
         "no-div-regex": "error"
-
     },
     "globals": {
-        "$": true,
-        "JQuery": true,
         "window": true,
-        "Promise": true, 
+        "Promise": true,
         "fetch": true,
-        "ky": true,
-		"debounce": true,
-		"google": true,
-		"infowindow": true
+        "ky": true
     }
 }

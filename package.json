@@ -1,8 +1,8 @@
 {
-  "name": "generator-101",
-  "version": "0.0.0",
-  "description": "This is a simple starter generator for my webapps",
-  "homepage": "localhost:8080",
+  "name": "generator-yuna",
+  "version": "1.0.0",
+  "description": "This is a simple starter generator for any webapp",
+  "homepage": "github.com/lasmd/generator-yuna/readme.md",
   "author": {
     "name": "Pocker\\LasithaMD",
     "email": "lamdadv@gmail.com",
@@ -11,7 +11,7 @@
   "files": [
     "generators"
   ],
-  "main": "generators/index.js",
+  "main": "generators/app/index.js",
   "keywords": [
     "generator",
     "starter",
@@ -19,61 +19,48 @@
     "yeoman-generator"
   ],
   "devDependencies": {
+    "ava": "^3.4.0",
     "eslint": "^5.9.0",
-    "eslint-config-prettier": "^3.3.0",
-    "eslint-config-xo": "^0.25.0",
-    "eslint-plugin-prettier": "^3.0.0",
     "globby": "^8.0.1",
-    "husky": "^1.2.0",
-    "jest": "^23.5.0",
-    "lint-staged": "^8.1.0",
-    "lodash.upperfirst": "^4.3.1",
+    "inquirer": "^7.1.0",
+    "lodash.camelcase": "^4.3.0",
+    "lodash.topairs": "^4.3.0",
+    "nock": "^12.0.3",
+    "nyc": "^15.0.0",
     "ora": "^3.0.0",
-    "prettier": "^1.15.2",
+    "p-series": "^2.1.0",
+    "rimraf": "^3.0.2",
+    "sinon": "^9.0.0",
+    "strip-ansi": "^6.0.0",
     "yeoman-assert": "^3.1.0",
-    "yeoman-test": "^1.7.0"
+    "yeoman-test": "^2.3.0"
   },
   "engines": {
     "npm": ">= 4.0.0"
   },
   "dependencies": {
     "chalk": "^2.1.0",
-    "yeoman-generator": "^2.0.1",
+    "crypto-random-string": "^3.1.0",
+    "yeoman-generator": "^2.0.5",
     "yosay": "^2.0.1"
   },
-  "jest": {
-    "testEnvironment": "node"
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "git add"
-    ],
-    "*.json": [
-      "prettier --write",
-      "git add"
-    ]
-  },
   "eslintConfig": {
-    "extends": [
-      "xo",
-      "prettier"
-    ],
     "env": {
-      "jest": true,
-      "node": true
-    },
-    "rules": {
-      "prettier/prettier": "error"
-    },
-    "plugins": [
-      "prettier"
-    ]
+      "node": true,
+      "ava": true
+    }
+  },
+  "ava": {
+    "verbose": true,
+    "failWithoutAssertions": false
   },
   "scripts": {
-    "pretest": "eslint .",
-    "test": "jest"
+    "test": "ava --verbose",
+    "coverage": "nyc ava"
   },
-  "repository": "LasMD/generator-101",
-  "private": true
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LasMD/generator-yuna.git"
+  },
+  "license": "MIT"
 }

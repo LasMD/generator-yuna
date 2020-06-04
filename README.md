@@ -1,36 +1,109 @@
-# generator-101 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
-> This is a simple starter generator for my webapps
+# Generator-Yuna
 
-## Installation
+<!-- [![build-image](build)]() -->
+<!-- [![code-coverage](codecov)]() -->
 
-First, install [Yeoman](http://yeoman.io) and generator-101 using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+![dependancies](dependancies)
+![license](license)
+![version](version)
+Universal generator(🌎) for all preliminary and advanced projects (batteries included)
 
-```bash
-npm install -g yo
-npm install -g generator-101
+![yuna execution](/images/generator-yuna.gif)
+
+# Table of contents
+
+- [spell it](https://github.com/LasMD/generator-yuna#spell-it)
+- [why yuna](https://github.com/LasMD/generator-yuna#why-yuna?)
+- [features included](https://github.com/LasMD/generator-yuna#features-included)
+- [Assumptions](https://github.com/LasMD/generator-yuna#assumptions)
+  - [Database](https://github.com/LasMD/generator-yuna#database)
+- [Install](https://github.com/LasMD/generator-yuna#install)
+- [Apps inspired _yuna_](https://github.com/LasMD/generator-yuna#apps-which-inspired-to-create-_yuna_)
+- [License](https://github.com/LasMD/generator-yuna#license)
+
+## Spell It
+
+yu-na -> spell ass **_yo-na_** not **_you-na_**. **_Y_**eoman **_U_**niversal ge**_n_**er**_a_**tor (YUNA). (it is a requirement of yeoman ecosystem to
+include _generator_ prefix)
+
+## Why yuna?
+
+The first impression get when a person reach _Yuna_ is why another generator ?
+The main idea behind _yuna_ is to make it more simpler and less fuzzie generator at all. If you consider more advanced tools, what can observer is complexity. herewith yuna, brings more simpler and robust scaffolding system.
+
+There are more general webapp scaffolding apps listed on (Yeoman site)[yeoman-generators], you can find on visiting the site.
+
+Here are features included in _yuna_ script.
+
+## features included
+
+- programatic, prioritized, and intelligent dependancy mangement to the generated project
+- comprehensive
+- Exetendable
+- important tools included (`gulp`, `sass`, `babel`, `postcss`, `browser-sync`, `sourcemaps`, `eslint`, etc.)
+- git configuration included and pre configured.
+- minimal server side PHP scripts included with security hardened (more languages will be supported in the future ex: `js`, `ruby`, `java`)
+- support to multiple builders and bundlers (`gulp`, `rollup`)
+- depoloy script included to support local deployment (deploy.bat) using \*AMP stack (windows only)
+
+visit [docs](yuna-wiki) for more
+
+## Assumptions
+
+- The plugin runs on windows (because of deploy.bat)
+- MYSQL database client installed and configured
+- Local dev server is WAMP
+- Nodejs and git installed and configured
+- `SERVER_ROOT` env is set to point to local deploy location
+
+### Database
+
+yuna assumes MySQL database client was installed and below enironment variables configured.
+
+- `MYSQL_DATABASE` to point to database name
+- `MYSQL_USER` to point to current database client user
+- `MYSQL_PASSWORD` listing the user password
+
+(please feel free to change the respective envars according to the client used to
+develop the application)
+
+## Install
+
+_Yuna_ requires several tools as dependancies listed in above assumptions.
+
+```
+npm install -g yeoman
+npm install -g generator-yuna
 ```
 
-Then generate your new project:
+## Apps which inspired to create _yuna_
 
-```bash
-yo 101
-```
-
-## Getting To Know Yeoman
-
- * Yeoman has a heart of gold.
- * Yeoman is a person with feelings and opinions, but is very easy to work with.
- * Yeoman can be too opinionated at times but is easily convinced not to be.
- * Feel free to [learn more about Yeoman](http://yeoman.io/).
+making of _Yuna_ inspired by 2 of the most amazing repos available on github
+[generator-webapp](generator-webapp)
+[generator-union-webapp](generator-union)
 
 ## License
 
- © [Pocker\LasithaMD](lasithaismy.name)
+MIT
 
+© [contact me](linkedin.com/in/lasithadenipitiya)
 
-[npm-image]: https://badge.fury.io/js/generator-101.svg
-[npm-url]: https://npmjs.org/package/generator-101
-[travis-image]: https://travis-ci.org/LasMD/generator-101.svg?branch=master
-[travis-url]: https://travis-ci.org/LasMD/generator-101
-[daviddm-image]: https://david-dm.org/LasMD/generator-101.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/LasMD/generator-101
+<!-- links to flags -->
+
+<!-- [build]: https://img.shields.io/travis/lasmd/generator-yuna?color=greenred&label=build&logo=travis -->
+
+<!-- [codecov]: https://img.shields.io/coveralls/github/lasmd/generator-yuna -->
+
+[dependancies]: https://img.shields.io/david/dev/lasmd/generator-yuna
+[license]: https://img.shields.io/github/license/lasmd/generator-yuna?color=crimson
+[version]: https://img.shields.io/npm/v/generator-yuna?color=blue
+
+<!-- liks to references -->
+
+[yeoman-generators]: https://yeoman.io/generators/
+
+<!-- github references -->
+
+[yuna-wiki]: https://github.com/LasMD/generator-yuna/wiki
+[generator-union]: https://github.com/unionco/generator-union-webapp/tree/master/app/templates
+[generator-webapp]: https://github.com/yeoman/generator-webapp

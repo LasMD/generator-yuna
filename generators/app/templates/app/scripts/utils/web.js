@@ -11,6 +11,7 @@ export const {signal} = controller.signal;
  */
 export const createRequest = (http, method = "get")=> {
     let request = http[method];
+    
     return async url=> {
         return await request(url, {signal});
     }

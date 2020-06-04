@@ -1,4 +1,7 @@
 <?php
+namespace Util;
+
+use Exception;
 
 class InputValidation
 {

@@ -1,72 +1,31 @@
-var path = require('path');
 var chalk = require('chalk');
-var http = require("http");
-var util = require("./util/text");
-var strip = require("strip-ansi");
+var util = require("./util/text.js");
+var metadata = require("./util/metadata.js");
 
-async function YeomanConfiguration() {
-  var answers = this.config.getAll();
+async function YeomanConfiguration(config) {
+  var answers = config.getAll();
   let prompts = [];
   let flag = false;
-
   if (Object.keys(answers).length > 0) {
+    
     var confirm = {
       when: !flag,
       type: "confirm",
       name: "previous",
-      message: "? We detect a previous saved configs. Shall I load it?",
+      message: "? Detected a previous saved configs for this project. Shall I load it?",
       default: true
     };
     prompts.push(confirm);
     flag = true;
+    return prompts;
   }
-
-  let filter = input => strip(input);
-
-  let getVersionQuestion = async function (name) {
-    let fetch = new Promise(function (resolve, reject) {
-      let finaldata = "";
-      http.get(util.createpath `http://registry.npmjs.com/${name}`, (response) => {
-        response.setEncoding("utf-8");
-        response
-          .on('data', (data) => finaldata = finaldata.concat(data))
-          .on('end', () => resolve(finaldata))
-          .on('error', reject);
-      });
-    });
-    let versions = await fetch;
-    let tags = JSON.parse(versions)['dist-tags'];
-
-    // retuning the question from abstracted data from npm registry
-    return {
-      when: (inquirer) => inquirer[util.replace(name)],
-      type: "list",
-      name: util.replace(name) + "Version",
-      message: inquirer => {
-        var stripped = util.stripname(name);
-        return ` Which ${stripped} version would you preffer?`
-      },
-      filter,
-      choices: inquirer => {
-        return Object.keys(tags)
-          .map(key => {
-            return {
-              name: "v" + tags[key],
-              value: tags[key],
-              short: tags[key]
-            }
-          });
-      }
-    }
-  };
-
   let name = {
     when: !flag,
     type: 'input',
     name: 'name',
     message: 'suggest a name for the application?',
     default: "proj-alpha-rc-01",
-    filter
+    filter: util.ansiStrip
   }
   prompts.push(name);
 
@@ -76,7 +35,7 @@ async function YeomanConfiguration() {
     name: 'site',
     message: 'What is your site URL?',
     default: chalk.cyan('example.com'),
-    filter
+    filter: util.ansiStrip
   }
   prompts.push(site);
 
@@ -84,76 +43,109 @@ async function YeomanConfiguration() {
     when: !flag,
     name: 'description',
     type: 'input',
-    message: 'describe your application purpose?',
+    message: 'Describe your application purpose?',
     default: chalk.cyan('This is a web applicaiton'),
-    filter
+    filter: util.ansiStrip
   }
   prompts.push(description);
+
+  let library = {
+    when: !flag,
+    type: "list",
+    name: "frontendLibrary",
+    message: "Which library would you like to include?",
+    choices: [
+      {name: 'JQuery',value: 'jquery'}, 
+      {name: 'Lit Html', value: 'lit-html'}, 
+      {name: 'React', value: 'react'}, 
+      {name: 'Vue', value: 'vue'}, 
+      {name: 'Svelt', value: 'svelt'}],
+    default: false
+  }
+  prompts.push(library);
+  let libQuestion = await metadata.getVersionQuestion({field: "frontendLibrary", processor: inquirer=> inquirer['frontendLibrary']});
+  prompts.push(libQuestion);
+
+  // choose whether to include a state management library
+  let state = {
+    when: !flag,
+    type: "confirm",
+    name: "state",
+    message: "Would you like to intergrate a state management library?",
+    default: false
+  }
+
+  prompts.push(state);
+
+  //choose which state managment library to included
+  let stateManagement = {
+    type: "list",
+    name: "stateManagement",
+    when: inquirer=> !flag && inquirer["state"],
+    message: "Which state management library would you prefer?",
+    choices: [
+      {name: "Redux", value: 'redux'}, 
+      {name: "Beedle", value: 'beedle'}],
+    default: false
+  }
+
+  prompts.push(stateManagement);
+  let sQuestion = await metadata.getVersionQuestion({field: "stateManagement", processor: inquirer=>inquirer["stateManagement"]});
+  prompts.push(sQuestion);
 
   let babel = {
     when: !flag,
     type: 'confirm',
-    name: 'babelCore',
+    name: 'transpiler',
     message: ' Would you like to include babel?',
-    default: answers['babelCore'] || true,
+    default: false,
   };
   prompts.push(babel);
-  let bquestion = await getVersionQuestion("@babel/core");
+  let bquestion = await metadata.getVersionQuestion({field: "transpiler", processor: "@babel/core"});
   prompts.push(bquestion);
 
   let gulp = {
     when: !flag,
     type: "confirm",
-    name: "gulp",
+    name: "builder",
     message: " Would you like to include gulp?",
-    default: answers['gulp'] || true
+    default: false
   };
   prompts.push(gulp);
-  let gquestion = await getVersionQuestion("gulp");
+  let gquestion = await metadata.getVersionQuestion({field: "builder", processor: "gulp"});
   prompts.push(gquestion);
-
-  let bower = {
-    when: !flag,
-    type: "confirm",
-    name: "bower",
-    message: " Would you like to include bower?",
-    default: answers['bower'] || true
-  };
-  prompts.push(bower);
-  let boquestion = await getVersionQuestion("bower");
-  prompts.push(boquestion);
 
   let eslint = {
     when: !flag,
     type: "confirm",
-    name: "eslint",
+    name: "linter",
     message: " Would you like to include eslint?",
-    default: answers['eslint'] || true
+    default: false
   };
   prompts.push(eslint);
-  let equestion = await getVersionQuestion("eslint");
+  let equestion = await metadata.getVersionQuestion({field: "linter", processor: "eslint"});
   prompts.push(equestion);
 
   let postcss = {
     when: !flag,
     type: "confirm",
-    name: "postcss",
+    name: "cssPreprocessor",
     message: " Would you like to include postcss?",
-    default: answers['postcss'] || true
+    default: false
   };
   prompts.push(postcss);
-  let pquestion = await getVersionQuestion("postcss");
+  let pquestion = await metadata.getVersionQuestion({field: "cssPreprocessor", processor: "postcss"});
   prompts.push(pquestion);
 
   let rollup = {
     when: !flag,
     type: "confirm",
-    name: "rollup",
+    name: "bundler",
     message: " Would you like to include rollup?",
-    default: answers['rollup'] || true
+    default: false
   };
   prompts.push(rollup);
-  let rquestion = await getVersionQuestion("rollup");
+  let rquestion = await metadata.getVersionQuestion({field: "bundler", processor: "rollup"});
   prompts.push(rquestion);
 
   return prompts;

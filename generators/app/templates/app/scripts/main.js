@@ -1,13 +1,7 @@
-import page from 'page';
-import {GET} from "./utils/web";
-import Slider from "./components/Slider";
+import {GET, POST} from "./utils/web";
 
 function init() {
-  page.start();
-  Slider.doTick();
-  var google = GET("https://www.google.com");
-  console.log(google);
-  return google;
+  //write your code here
 }
 
 init();

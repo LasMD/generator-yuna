@@ -1,22 +1,26 @@
 # This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
 # For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
 
-name: Node.js Package
+name: testing yuna package with ava
 
 on:
-  release:
-    types: [created]
+  pull_request:
+    branches:
+      - master
 jobs:
-  publish-npm:
-    runs-on: ubuntu-latest
+  test-yuna-with-ava:
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+        os: [windows-latest]
+        versions: [10.x, 12.x]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: ${{matrix.versions}}
           registry-url: https://registry.npmjs.org/
-      run: |
-        npm ci
-        npm publish
-      env:
-        NODE_AUTH_TOKEN: ${{secrets.NPM_PUBLISH_KEY}}
+      - name: running testing
+        run: |
+          npm ci
+          npm test

@@ -59,7 +59,7 @@ let _runner = async function ({
     .withPrompts(generatorPrompts)
     //at each run, the cwd stays tangled to previous base folder
     //we have to state the cwd explcitely to overcome this
-    .cd(cwd)
+    // .cd(cwd)
     .inDir("test-workspace");
   runner.on("ready", (generator) => {
     let genProt = Object.getPrototypeOf(generator);

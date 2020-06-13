@@ -4,23 +4,23 @@ let metadata = require("../generators/app/util/metadata.js");
 let web = require("../generators/app/util/web.js");
 
 let get;
-test.beforeEach(t => {
+test.serial.beforeEach((t) => {
   let epack = "@babel/core";
   let npack = "unexisted";
   let field = "transpiler";
   let data = {
-    "data": JSON.stringify({
-      "_id": epack,
+    data: JSON.stringify({
+      _id: epack,
       "dist-tags": {
-        "latest": "7.8.4",
-        "release": "6.0.0-bridge.1"
-      }
+        latest: "7.8.4",
+        release: "6.0.0-bridge.1",
+      },
       //other data were redacted for clarity
     }),
-    "error": 0
-  }
+    error: 0,
+  };
 
-  //stubing the HTTP get method of web.js with fake 
+  //stubing the HTTP get method of web.js with fake
   //object 'withArgs' and 'withReturns'
 
   // issue submitted under
@@ -28,23 +28,23 @@ test.beforeEach(t => {
   // https://github.com/sinonjs/sinon/blob/6197ff34eefd021faa0ba14b05a4a543dcd407bc/lib/sinon/stub.js#L118-L132
   // stub retains references to the fakes even after restore
   // restore at each 'afterEach' clauses isn't enouth
-  get && get.restore()
+  get && get.restore();
   get = sin.stub(web, "get");
   get.withArgs(epack).resolves(data);
 
   t.context = {
-    "epack": epack,
-    "npack": npack,
-    "field": field
-  }
+    epack: epack,
+    npack: npack,
+    field: field,
+  };
 });
 
 //eslint-disable-next-line no-unused-vars
-test.afterEach(t=> {
+test.serial.afterEach((t) => {
   get.restore();
 });
 
-test("should call predicate if it is given a function", t => {
+test.serial("should call predicate if it is given a function", (t) => {
   let field = t.context.field;
   let epack = t.context.epack;
   let processor = sin.stub().returns(epack);
@@ -53,7 +53,7 @@ test("should call predicate if it is given a function", t => {
   t.true(get.called);
 });
 
-test("should produce question object for exisisting package", async t => {
+test.serial("should produce question object for exisisting package", async (t) => {
   let field = t.context.field;
   let processor = t.context.epack;
   let question = await metadata.getVersionQuestion({ field, processor });
@@ -63,16 +63,23 @@ test("should produce question object for exisisting package", async t => {
 
   let fakeInquirer = { [field]: processor };
   t.truthy(question.when(fakeInquirer));
-  t.is(question.message(fakeInquirer), "Which babelCore version would you preffer?");
+  t.is(
+    question.message(fakeInquirer),
+    "Which babelCore version would you preffer?"
+  );
 
   //check the object data for the choises
   let choices = question.choices(fakeInquirer);
   t.is(choices.length, 2);
   t.deepEqual(choices[0], { name: "v7.8.4", value: "7.8.4", short: "7.8.4" });
-  t.deepEqual(choices[1], { name: "v6.0.0-bridge.1", value: "6.0.0-bridge.1", short: "6.0.0-bridge.1" });
+  t.deepEqual(choices[1], {
+    name: "v6.0.0-bridge.1",
+    value: "6.0.0-bridge.1",
+    short: "6.0.0-bridge.1",
+  });
 });
 
-test('should produce a blank result if the package is an unexisted package', async t => {
+test.serial("should produce a blank result if the package is an unexisted package", async (t) => {
   sin.restore();
 
   let getUnexist = sin.stub(web, "get");
@@ -82,6 +89,7 @@ test('should produce a blank result if the package is an unexisted package', asy
 
   let processor = "unexisted";
   let result = await metadata.getVersionQuestion({ field, processor });
-  getUnexist.restore();
   t.falsy(result);
+
+  getUnexist.restore();
 });

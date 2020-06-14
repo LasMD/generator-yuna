@@ -25,7 +25,6 @@ jobs:
       - name: running testing
         run: |
           npm ci
-          npm install
           npm run coverage
         env:
           SERVER_ROOT: "C:\\wamp64\\www"

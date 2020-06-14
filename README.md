@@ -1,9 +1,9 @@
 # Generator-Yuna
 
-<!-- [![build-image](https://img.shields.io/travis/lasmd/generator-yuna?color=greenred&label=build&logo=travis)]() -->
-<!-- [![code-coverage](https://img.shields.io/coveralls/github/lasmd/generator-yuna)]() -->
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/lasmd/generator-yuna/test/master)
+[![Coverage Status](https://coveralls.io/repos/github/LasMD/generator-yuna/badge.svg)](https://coveralls.io/github/LasMD/generator-yuna)
 
-![dependancies](https://img.shields.io/david/dev/lasmd/generator-yuna)
+![dependancies](https://img.shields.io/david/dev/lasmd/generator-yuna?color=green)
 ![license](https://img.shields.io/github/license/lasmd/generator-yuna?color=green)
 ![npm version](https://img.shields.io/npm/v/generator-yuna?color=blue)
 

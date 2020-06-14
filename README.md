@@ -14,11 +14,14 @@ Universal generator(🌎) for all preliminary and advanced projects (batteries i
 # Table of contents
 
 - [spell it](https://github.com/LasMD/generator-yuna#spell-it)
+- [Install](https://github.com/LasMD/generator-yuna#install)
+- [Usage](https://github.com/LasMD/generator-yuna#usage)
 - [why yuna](https://github.com/LasMD/generator-yuna#why-yuna?)
 - [features included](https://github.com/LasMD/generator-yuna#features-included)
 - [Assumptions](https://github.com/LasMD/generator-yuna#assumptions)
+
   - [Database](https://github.com/LasMD/generator-yuna#database)
-- [Install](https://github.com/LasMD/generator-yuna#install)
+
 - [Apps inspired _yuna_](https://github.com/LasMD/generator-yuna#apps-which-inspired-to-create-_yuna_)
 - [License](https://github.com/LasMD/generator-yuna#license)
 
@@ -26,6 +29,23 @@ Universal generator(🌎) for all preliminary and advanced projects (batteries i
 
 yu-na -> spell ass **_yo-na_** not **_you-na_**. **Y**eoman **U**niversal ge**n**er**a**tor (YUNA). (it is a requirement of yeoman ecosystem to
 include _generator_ prefix)
+
+## Install
+
+> Yuna requires several tools as dependancies listed in assumptions.
+
+```
+npm install -g yeoman
+npm install -g generator-yuna
+```
+
+## Usage
+
+> before running yuna, please make sure that the deployment folder is created with the name which will be giving to the application
+
+```
+yo yuna
+```
 
 ## Why yuna?
 
@@ -68,18 +88,9 @@ yuna assumes MySQL database client was installed and below enironment variables 
 (please feel free to change the respective envars according to the client used to
 develop the application)
 
-## Install
-
-_Yuna_ requires several tools as dependancies listed in above assumptions.
-
-```
-npm install -g yeoman
-npm install -g generator-yuna
-```
-
 ## Apps which inspired to create _yuna_
 
-making of _Yuna_ inspired by 2 of the most amazing repos available on github
+making of _Yuna_ inspired by 2 of the most amazing repos available on github 😎
 [generator-webapp](generator-webapp)
 [generator-union-webapp](generator-union)
 

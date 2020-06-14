@@ -257,13 +257,8 @@ module.exports = class extends Generator {
         }
         return dependancies;
       }, new Set());
-    let _install = [];
     dependancySet.forEach((dependancy) =>
-      _install.push(this.npmInstall(`${dependancy}`, { "save-dev": true }))
-    );
-
-    Promise.all([..._install]).then((e) =>
-      this.log("::::: Dependancies installed :::::")
+      this.npmInstall(`${dependancy}`, { "save-dev": true })
     );
   }
 

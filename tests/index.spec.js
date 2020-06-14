@@ -178,7 +178,7 @@ test.serial("should separate FQN from given project url", async (t) => {
   //this assumes that (for the development purpose) the developer configures
   //the server root of the web server used for the development and its
   //server root path into a registry key as SERVER_ROOT
-  let SERVER_ROOT = "C:/wamp64/www";
+  let SERVER_ROOT = "C:\\wamp64\\www";
   ya.fileContent("deploy.bat", SERVER_ROOT);
   // ya.fileContent("deploy.bat", `${SERVER_ROOT}/${name}`);
 
@@ -230,26 +230,6 @@ test("should contain front end scripts", async (t) => {
 });
 
 //assumes that there is previous saved yeoman configurations under the cwd
-// test("should load answers from file if previous yo-rc.json was found at cwd", async t => {
-//   //this test is pretty much uncomplete
-// index.js#L28-L31
-
-//   t.timeout(8000);
-//   let overrides = {
-//     "writing": () => { },
-//     "install": () => { },
-//     "end": () => { }
-//   }
-//   let firstPrompts = {
-//     name: "dummyproject-007"
-//   }
-//   //first invoke to simulate a previously existing project
-//   await _runner({ prompts: firstPrompts, overrides });
-
-//   let secondPrompts = {
-//     name: "dummyproject-007",
-//     previous: true
-//   }
-//   await _runner({ prompts: secondPrompts, overrides, special: true });
-//   t.pass();
-// });
+test("should load answers from file if previous yo-rc.json was found at cwd", async (t) => {
+  t.pass("yet to be implemented");
+});

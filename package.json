@@ -19,7 +19,7 @@
     "yeoman-generator"
   ],
   "devDependencies": {
-    "ava": "^3.4.0",
+    "ava": "^3.8.2",
     "eslint": "^5.9.0",
     "globby": "^8.0.1",
     "inquirer": "^7.1.0",

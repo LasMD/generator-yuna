@@ -1,4 +1,4 @@
-name: publish yuna to npm
+name: publish
 on:
   release:
     types: [released]
@@ -17,4 +17,4 @@ jobs:
       - name: publishing to npm
         run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_PUBLISH_KEY}}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_KEY }}

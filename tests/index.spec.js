@@ -6,7 +6,6 @@ const sinon = require("sinon");
 const yt = require("yeoman-test");
 const ya = require("yeoman-assert");
 
-let cwd = process.cwd();
 //every prompts for the generator under the test
 let hashPrompts = {
   name: "dummyproject",
@@ -39,7 +38,6 @@ let _runner = async function ({
   prompts = {},
   options = { force: true },
   args = undefined,
-  overrides = {},
   special = false,
 }) {
   let generatorPrompts;
@@ -55,27 +53,8 @@ let _runner = async function ({
   if (options) {
     runner = runner.withOptions(options);
   }
-  runner
-    .withPrompts(generatorPrompts)
-    //at each run, the cwd stays tangled to previous base folder
-    //we have to state the cwd explcitely to overcome this
-    // .cd(cwd)
-    .inDir("test-workspace");
+  runner.withPrompts(generatorPrompts).inDir("test-workspace");
   runner.on("ready", (generator) => {
-    let genProt = Object.getPrototypeOf(generator);
-    for (let override in overrides) {
-      if (override in genProt) {
-        Object.defineProperty(genProt, override, {
-          configurable: true,
-          enumerable: true,
-          writable: true,
-          value: overrides[override],
-        });
-      } else {
-        continue;
-      }
-    }
-
     //this is necessary unless the generator itself uses the process.cwd() as the
     //current directory which is the root directory of the project
     generator.destinationRoot(path.join(__dirname, "../test-workspace"));
@@ -96,29 +75,21 @@ test.before((t) => {
 
 //assumes that there is no previous saved yeoman configurations under the cwd
 test.serial("should contans dummy 18 inquirer questions", async (t) => {
-  t.timeout(8000);
-  let overrides = {
-    install: () => {},
-    end: () => {},
-  };
-  let [runner] = await _runner({ overrides });
+  t.timeout(20000);
+  let [runner] = await _runner({});
   t.is(Object.keys(runner.generator.answers).length, 18);
 });
 
 test.serial("should contain a .git folder", async (t) => {
   t.timeout(8000);
-  let overrides = {
-    install: () => {},
-    end: () => {},
-  };
-  await _runner({ overrides });
+  await _runner({});
   ya.file(".git");
 });
 
 test.serial(
   "should not include respective config files if user preffer not to include the tool",
   async (t) => {
-    t.timeout(8000);
+    t.timeout(20000);
     let id = _generateId();
     let prompts = {
       name: `dummyproject-${id}`,
@@ -128,12 +99,7 @@ test.serial(
       bundler: false,
     };
 
-    let overrides = {
-      install: () => {},
-      end: () => {},
-    };
-
-    await _runner({ prompts, overrides });
+    await _runner({ prompts });
     ya.noFile(".eslintrc");
     ya.noFile(".eslintignore");
     ya.file("babel.config.js");
@@ -144,19 +110,14 @@ test.serial(
 );
 
 test.serial("should separate FQN from given project url", async (t) => {
-  t.timeout(8000);
+  t.timeout(20000);
   //.htaccess,
   let id = _generateId();
   let name = `dummyproject-${id}`;
   let site = `admin.${name}.test`;
   let fqn = `${name}.test`;
 
-  let overrides = {
-    install: () => {},
-    end: () => {},
-  };
-
-  let [runner] = await _runner({ prompts: { name, site }, overrides });
+  let [runner] = await _runner({ prompts: { name, site } });
   let address = `admin.${name}.test`;
 
   t.is(runner.generator.answers.name, name);
@@ -198,16 +159,12 @@ test.serial("should separate FQN from given project url", async (t) => {
 });
 
 test("should functional and utility styles servive the template copy step", async (t) => {
-  t.timeout(8000);
-  let overrides = {
-    install: () => {},
-    end: () => {},
-  };
+  t.timeout(20000);
   let id = _generateId();
   let prompts = {
     name: `dummyproject-${id}`,
   };
-  await _runner({ prompts, overrides });
+  await _runner({ prompts });
   ya.file("app/styles");
   ya.file("app/styles/main.scss");
 

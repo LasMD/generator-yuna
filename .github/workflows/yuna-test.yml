@@ -25,7 +25,7 @@ jobs:
       - name: running testing
         run: |
           npm ci
-          npm run coverage
+          npm test
         env:
           SERVER_ROOT: "C:\\wamp64\\www"
       - name: coverage reporting

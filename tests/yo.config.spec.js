@@ -53,6 +53,7 @@ test.serial.afterEach((t) => {
 test.serial(
   "Should contain a prompt for 'load previous configs'",
   async (t) => {
+    t.timeout(20000);
     let result = await conf({ getAll: getAllReturnsData });
     t.true(getAllReturnsData.called);
     t.false(verQueStub.called);
@@ -66,6 +67,7 @@ test.serial(
 test.serial(
   "Should not contain a prompt for 'load previous configs'",
   async (t) => {
+    t.timeout(20000);
     let result = await conf({ getAll: getAllReturnsEmpty });
     t.true(getAllReturnsEmpty.called);
     t.true(verQueStub.called);
@@ -84,6 +86,7 @@ test.serial(
 test.serial(
   "Should contain 18 question items when there is no previous saved configs",
   async (t) => {
+    t.timeout(20000);
     let result = await conf({ getAll: getAllReturnsEmpty });
     t.true(getAllReturnsEmpty.called);
     t.true(verQueStub.called);

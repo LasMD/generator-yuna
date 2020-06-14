@@ -45,6 +45,7 @@ test.serial.afterEach((t) => {
 });
 
 test.serial("should call predicate if it is given a function", (t) => {
+  t.timeout(20000);
   let field = t.context.field;
   let epack = t.context.epack;
   let processor = sin.stub().returns(epack);
@@ -53,43 +54,51 @@ test.serial("should call predicate if it is given a function", (t) => {
   t.true(get.called);
 });
 
-test.serial("should produce question object for exisisting package", async (t) => {
-  let field = t.context.field;
-  let processor = t.context.epack;
-  let question = await metadata.getVersionQuestion({ field, processor });
-  t.true(get.called);
-  t.is(question.type, "list");
-  t.is(question.name, "transpilerVersion");
+test.serial(
+  "should produce question object for exisisting package",
+  async (t) => {
+    t.timeout(20000);
+    let field = t.context.field;
+    let processor = t.context.epack;
+    let question = await metadata.getVersionQuestion({ field, processor });
+    t.true(get.called);
+    t.is(question.type, "list");
+    t.is(question.name, "transpilerVersion");
 
-  let fakeInquirer = { [field]: processor };
-  t.truthy(question.when(fakeInquirer));
-  t.is(
-    question.message(fakeInquirer),
-    "Which babelCore version would you preffer?"
-  );
+    let fakeInquirer = { [field]: processor };
+    t.truthy(question.when(fakeInquirer));
+    t.is(
+      question.message(fakeInquirer),
+      "Which babelCore version would you preffer?"
+    );
 
-  //check the object data for the choises
-  let choices = question.choices(fakeInquirer);
-  t.is(choices.length, 2);
-  t.deepEqual(choices[0], { name: "v7.8.4", value: "7.8.4", short: "7.8.4" });
-  t.deepEqual(choices[1], {
-    name: "v6.0.0-bridge.1",
-    value: "6.0.0-bridge.1",
-    short: "6.0.0-bridge.1",
-  });
-});
+    //check the object data for the choises
+    let choices = question.choices(fakeInquirer);
+    t.is(choices.length, 2);
+    t.deepEqual(choices[0], { name: "v7.8.4", value: "7.8.4", short: "7.8.4" });
+    t.deepEqual(choices[1], {
+      name: "v6.0.0-bridge.1",
+      value: "6.0.0-bridge.1",
+      short: "6.0.0-bridge.1",
+    });
+  }
+);
 
-test.serial("should produce a blank result if the package is an unexisted package", async (t) => {
-  sin.restore();
+test.serial(
+  "should produce a blank result if the package is an unexisted package",
+  async (t) => {
+    t.timeout(20000);
+    sin.restore();
 
-  let getUnexist = sin.stub(web, "get");
-  getUnexist.withArgs(t.context.npack).resolves({ data: {}, error: 1 });
+    let getUnexist = sin.stub(web, "get");
+    getUnexist.withArgs(t.context.npack).resolves({ data: {}, error: 1 });
 
-  let field = t.context.field;
+    let field = t.context.field;
 
-  let processor = "unexisted";
-  let result = await metadata.getVersionQuestion({ field, processor });
-  t.falsy(result);
+    let processor = "unexisted";
+    let result = await metadata.getVersionQuestion({ field, processor });
+    t.falsy(result);
 
-  getUnexist.restore();
-});
+    getUnexist.restore();
+  }
+);

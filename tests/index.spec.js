@@ -81,7 +81,7 @@ test.serial("should contans dummy 18 inquirer questions", async (t) => {
 });
 
 test.serial("should contain a .git folder", async (t) => {
-  t.timeout(8000);
+  t.timeout(20000);
   await _runner({});
   ya.file(".git");
 });
@@ -177,6 +177,7 @@ test("should functional and utility styles servive the template copy step", asyn
 });
 
 test("should contain front end scripts", async (t) => {
+  t.timeout(20000);
   let id = _generateId();
   let prompts = {
     name: `dummyproject-${id}`,

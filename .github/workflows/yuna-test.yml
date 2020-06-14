@@ -14,7 +14,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-latest]
+        os: [ubuntu-latest]
         versions: [10.x, 12.x]
     steps:
       - uses: actions/checkout@v2
@@ -24,8 +24,8 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - name: running testing
         run: |
-          npm ci
-          npm test
+          npm install
+          npm run coverage
         env:
           SERVER_ROOT: "C:\\wamp64\\www"
       - name: coverage reporting

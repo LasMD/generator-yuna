@@ -22,17 +22,13 @@ module.exports = class extends Generator {
   }
 
   async prompting() {
-    try {
-      this.log(yosay(`Welcome to the ${chalk.red("Rich Web App")} generator!`));
-      let answers = await this.prompt(this.prompts);
-      let previous = answers["previous"];
-      if (!!previous && previous) {
-        answers = this.config.getAll();
-      }
-      Object.assign(this.answers, answers);
-    } catch (err) {
-      console.log(err);
+    this.log(yosay(`Welcome to the ${chalk.red("Rich Web App")} generator!`));
+    let answers = await this.prompt(this.prompts);
+    let previous = answers["previous"];
+    if (!!previous && previous) {
+      answers = this.config.getAll();
     }
+    Object.assign(this.answers, answers);
   }
 
   async configuring() {
@@ -257,13 +253,8 @@ module.exports = class extends Generator {
         }
         return dependancies;
       }, new Set());
-    let _install = [];
     dependancySet.forEach((dependancy) =>
-      _install.push(this.npmInstall(`${dependancy}`, { "save-dev": true }))
-    );
-
-    Promise.all([..._install]).then((e) =>
-      this.log("::::: Dependancies installed :::::")
+      this.npmInstall(`${dependancy}`, { "save-dev": true })
     );
   }
 

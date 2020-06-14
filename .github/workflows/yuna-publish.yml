@@ -1,0 +1,20 @@
+name: publish
+on:
+  release:
+    types: [released]
+
+jobs:
+  publish-to-npm:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checking out branch
+        uses: actions/checkout@v2
+      - name: stup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10
+          registry-url: https://registry.npmjs.org/
+      - name: publishing to npm
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_KEY }}

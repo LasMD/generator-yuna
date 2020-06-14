@@ -1,8 +1,8 @@
 {
   "name": "generator-yuna",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This is a simple starter generator for any webapp",
-  "homepage": "github.com/lasmd/generator-yuna/readme.md",
+  "homepage": "github.com/lasmd/generator-yuna#readme.md",
   "author": {
     "name": "Pocker\\LasithaMD",
     "email": "lamdadv@gmail.com",
@@ -33,7 +33,7 @@
     "sinon": "^9.0.0",
     "strip-ansi": "^6.0.0",
     "yeoman-assert": "^3.1.0",
-    "yeoman-test": "^2.3.0"
+    "yeoman-test": "^2.6.0"
   },
   "engines": {
     "npm": ">= 4.0.0"
@@ -41,7 +41,7 @@
   "dependencies": {
     "chalk": "^2.1.0",
     "crypto-random-string": "^3.1.0",
-    "yeoman-generator": "^2.0.5",
+    "yeoman-generator": "^4.10.1",
     "yosay": "^2.0.1"
   },
   "eslintConfig": {
@@ -56,7 +56,7 @@
   },
   "scripts": {
     "test": "ava --verbose",
-    "coverage": "nyc ava"
+    "coverage": "nyc --reporter=lcov ava"
   },
   "repository": {
     "type": "git",

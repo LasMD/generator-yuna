@@ -1,22 +1,26 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Yeoman Debugger",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "trace": true,
-            "program": "${workspaceFolder}\\generators\\app\\index.js",
-            "stopOnEntry": true,
-            "cwd": "${workspaceFolder}",
-            "internalConsoleOptions": "openOnSessionStart",
-            "console": "internalConsole"
-        }
-    ]
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Yeoman Debugger",
+      "args": ["debug", "--break", "${file}"],
+
+      "port": 9229,
+      "outputCapture": "std",
+
+      "cwd": "${workspaceFolder}",
+      "internalConsoleOptions": "openOnSessionStart",
+      "protocol": "inspector",
+      "console": "internalConsole",
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/ava",
+
+      "trace": true,
+      "stopOnEntry": true
+    }
+  ]
 }

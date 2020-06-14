@@ -5,9 +5,6 @@ bower_components/
 #dotfiles
 .editorconfig
 
-#metadeta
-package-lock.json
-
 #testing workspace
 test-workspace/
 

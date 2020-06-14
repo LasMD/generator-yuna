@@ -6,6 +6,7 @@ const sinon = require("sinon");
 const yt = require("yeoman-test");
 const ya = require("yeoman-assert");
 
+const root = process.cwd();
 //every prompts for the generator under the test
 let hashPrompts = {
   name: "dummyproject",
@@ -53,15 +54,11 @@ let _runner = async function ({
   if (options) {
     runner = runner.withOptions(options);
   }
-  runner.withPrompts(generatorPrompts).inDir("test-workspace");
-  runner.on("ready", (generator) => {
-    //this is necessary unless the generator itself uses the process.cwd() as the
-    //current directory which is the root directory of the project
-    generator.destinationRoot(path.join(__dirname, "../test-workspace"));
-  });
+  runner.withPrompts(generatorPrompts).inDir(`${root}\\test-workspace`);
   return [runner, await runner.toPromise()];
 };
-test.before((t) => {
+
+test.serial.before((t) => {
   let settings = {
     tmpdir: false,
     namespace: "yuna:generators:app",
@@ -71,6 +68,10 @@ test.before((t) => {
   let sora = sinon.stub(ora, "promise");
   sora.withArgs(Promise.resolve(), "").resolves();
   t.context = { settings };
+});
+
+test.serial.afterEach(() => {
+  process.chdir(`${root}`);
 });
 
 //assumes that there is no previous saved yeoman configurations under the cwd
@@ -158,25 +159,28 @@ test.serial("should separate FQN from given project url", async (t) => {
   ya.file("rollup.config.js");
 });
 
-test("should functional and utility styles servive the template copy step", async (t) => {
-  t.timeout(20000);
-  let id = _generateId();
-  let prompts = {
-    name: `dummyproject-${id}`,
-  };
-  await _runner({ prompts });
-  ya.file("app/styles");
-  ya.file("app/styles/main.scss");
+test.serial(
+  "should functional and utility styles servive the template copy step",
+  async (t) => {
+    t.timeout(20000);
+    let id = _generateId();
+    let prompts = {
+      name: `dummyproject-${id}`,
+    };
+    await _runner({ prompts });
+    ya.file("app/styles");
+    ya.file("app/styles/main.scss");
 
-  ya.file("app/styles/abstract/_functions.scss");
-  ya.file("app/styles/abstract/_mixins.scss");
-  ya.file("app/styles/abstract/_placeholders.scss");
-  ya.file("app/styles/abstract/_variables.scss");
+    ya.file("app/styles/abstract/_functions.scss");
+    ya.file("app/styles/abstract/_mixins.scss");
+    ya.file("app/styles/abstract/_placeholders.scss");
+    ya.file("app/styles/abstract/_variables.scss");
 
-  ya.file("app/styles/base/_reset.scss");
-});
+    ya.file("app/styles/base/_reset.scss");
+  }
+);
 
-test("should contain front end scripts", async (t) => {
+test.serial("should contain front end scripts", async (t) => {
   t.timeout(20000);
   let id = _generateId();
   let prompts = {
@@ -188,6 +192,9 @@ test("should contain front end scripts", async (t) => {
 });
 
 //assumes that there is previous saved yeoman configurations under the cwd
-test("should load answers from file if previous yo-rc.json was found at cwd", async (t) => {
-  t.pass("yet to be implemented");
-});
+test.serial(
+  "should load answers from file if previous yo-rc.json was found at cwd",
+  async (t) => {
+    t.pass("yet to be implemented");
+  }
+);

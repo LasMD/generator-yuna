@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         os: [windows-latest]
-        versions: [12.x]
+        versions: [10.x, 12.x]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
